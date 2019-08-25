@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import "./App.scss";
+import { BrowserRouter as Router, Route, Switch as TPLink } from 'react-router-dom'
+import HeaderNavigation from './components/views/HeaderNavigation'
+import FooterNavigation from './components/views/FooterNavigation'
+import HomeContent from './components/contents/HomeContent'
+import AboutContent from './components/contents/AboutContent'
+import CerdikiawanContent from './components/contents/CerdikiawanContent'
+import NotFound from './components/views/NotFound'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <HeaderNavigation />
+          <TPLink>
+            <Route path = '/' exact component = {HomeContent}/>
+            <Route path = '/about' component = {AboutContent}/>
+            <Route path = '/cerdikiawan' component = {CerdikiawanContent}/>
+            <Route component = {NotFound} />
+          </TPLink>
+        <FooterNavigation />
+      </Router>
+    )
+  }
 }
 
-export default App;
+export default App
